@@ -1,17 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Dodaj artykuł</h1>
-    <form method="POST">
+<script defer src="\static\js\scripts.js"></script>
+
+<link href="/static/css/add_article_styles.css" rel="stylesheet">
+    <form method="POST" class="form-grid">
         {{ form.hidden_tag() }}
-        {{ form.link.label }} {{ form.link() }}
-        {{ form.year.label }} {{ form.year() }}
-        {{ form.category.label }} {{ form.category() }}
-        {{ form.title.label }} {{ form.title() }}
-        {{ form.problem_description.label }} {{ form.problem_description() }}
-        {{ form.solution_description.label }} {{ form.solution_description() }}
-        {{ form.result.label }} {{ form.result() }}
-        {{ form.problems.label }} {{ form.problems() }}
-        {{ form.additional_notes.label }} {{ form.additional_notes() }}
-        {{ form.submit() }}
+        {{ form.doi.label(class="doi-label") }} {{ form.doi(class="doi-input", autocomplete="off") }}
+        {{ form.link.label(class="link-label") }} {{ form.link(class="link-input") }}
+        {{ form.year.label(class="year-label") }} {{ form.year(class="year-input") }}
+        {{ form.category.label(class="category-label") }} {{ form.category(class="category-input") }}
+        {{ form.title.label(class="title-label") }} {{ form.title(class="title-input") }}
+        {{ form.problem_description.label(class="problem-description-label") }} {{ form.problem_description(class="problem-description-input") }}
+        {{ form.solution_description.label(class="solution-description-input") }} {{ form.solution_description(class="solution-description-input") }}
+        {{ form.result.label(class="result-label") }} {{ form.result(class="result-input") }}
+        {{ form.problems.label(class="problems-label") }} {{ form.problems(class="form-input") }}
+        {{ form.additional_notes.label(class="additional-notes-label") }} {{ form.additional_notes(class="additional-notes-input") }}
+        {{ form.first_name.label(class="first-name-label") }} {{ form.first_name(class="first-name-input") }}
+        {{ form.last_name.label(class="last-name-label") }} {{ form.last_name(class="last-name-input") }}
+        {{ form.submit(class="submit-button") }}
     </form>
 {% endblock %}

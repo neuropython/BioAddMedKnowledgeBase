@@ -2,18 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Twój Projekt</title>
-    <!-- Dodaj link do pliku Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"></head>
+    <title>BioAddMed Baza Wiedzy</title>
+    <link href="/static/css/styles.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
 <body>
+    <header class="header">
+        <img class="logo" src="static\css\logo_bioaddmed.jpg">
+        <h1>BioAddMed Baza Wiedzy</h1>
+    </header>
     <main>
+        {% if not is_login_page %}
+        <button class="navbar-button">
+            <span class="burger"></span>
+        </button>
+        <ul class="navbar">
+            <li class="navbar-item"><a href="{{ url_for('show_articles') }}" class="navbar-link">Artykuły</a></li>
+            <li class="navbar-item"><a href="{{ url_for('add_article') }}" class="navbar-link">Dodaj artykuł</a></li>
+            <li class="navbar-item"><a href="{{ url_for('home') }}" class="navbar-link">Strona główna</a></li>
+        </ul>
+        {% endif %}
         {% block content %}
         {% endblock %}
     </main>
     <footer>
         <!-- Możesz dodać tutaj stopkę strony -->
     </footer>
-    <!-- Dodaj link do pliku Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>        <!-- Twój skrypt JavaScript do obsługi flash messages -->
 </body>
 </html>

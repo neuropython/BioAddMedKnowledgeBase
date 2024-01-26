@@ -1,9 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Strona logowania</h1>
+<link href="/static/css/index_styles.css" rel="stylesheet">
+
+<div class="input-container">
     <form method="POST">
         {{ form.hidden_tag() }}
-        {{ form.password.label }} {{ form.password() }}
-        {{ form.submit() }}
+        {{ form.password.label(class="password-label") }} {{ form.password(class="password-form", type="password") }}
+        {% with messages = get_flashed_messages() %}
+            {% for msg in messages %}
+                <p>{{msg}}</p>
+            {% endfor %}
+        {% endwith %}
+        {{ form.submit(class="password-button") }}
     </form>
+</div>
 {% endblock %}

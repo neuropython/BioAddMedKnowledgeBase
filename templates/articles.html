@@ -1,23 +1,32 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Wszystkie artykuły</h1>
-    <form method="POST">
+<script defer src="\static\js\scripts.js"></script>
+<link href="/static/css/articles_styles.css" rel="stylesheet">
+    <form method="POST" class="sort-conatiner">
         {{ form.hidden_tag() }}
         {{ form.sort_by.label }} {{ form.sort_by() }}
+        {{ form.category.label }} {{form.category() }}
         {{ form.ascending.label }} {{ form.ascending() }}
         {{ form.submit() }}
     </form>
+    <div class="articles">
     {% for article in articles %}
-        <div>
-            <h2>{{ article.title }}</h2>
-            <p>Link: {{ article.link }}</p>
-            <p>Rok: {{ article.year }}</p>
-            <p>Kategoria: {{ article.category }}</p>
-            <p>Opis problemu: {{ article.problem_description }}</p>
-            <p>Opis rozwiązania: {{ article.solution_description }}</p>
-            <p>Wynik: {{ article.result }}</p>
-            <p>Problemy: {{ article.problems }}</p>
-            <p>Dodatkowe uwagi: {{ article.additional_notes }}</p>
+        <div class="article-container">
+            <h2 class="article-head">{{ article.title }}</h2>
+            <label class="link-label">Link:</label><p><a href="{{ article.link }}">{{ article.link }}</a></p>
+            <label class="year-label">Rok:</label> <p>{{ article.year }}</p>
+            <label class="category-label">Kategorie:</label> <p>{{ article.category[0] }}, {{ article.category[1] }}</p>
+            <label class="problem-label">Opis problemu:</label> <p>{{ article.problem_description }}</p>
+            <label class="solution-label">Opis rozwiązania:</label> <p>{{ article.solution_description }}</p>
+            <label class="result-label">Wynik:</label> <p>{{ article.result }}</p>
+            <label class="problems-label">Problemy:</label> <p>{{ article.problems }}</p>
+            <label class="additional-notes-label">Dodatkowe uwagi:</label> <p>{{ article.additional_notes }}</p>
+            <p class="problems-label">Autor:</label> {{ article.full_name }}</p>
         </div>
     {% endfor %}
+    </div>
+    <script>
+        const articleCount=document.querySelectorAll(".article-container").length;
+        document.querySelector(".articles-count").innerHTML=articleCount;
+    </script>
 {% endblock %}
